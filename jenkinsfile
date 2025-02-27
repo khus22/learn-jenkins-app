@@ -2,6 +2,11 @@ pipeline {
     agent any
 
     stages {
+        stage('Check Docker') {
+            steps {
+                sh 'docker --version'
+            }
+        }
         stage('Build') {
             agent {
                 docker {
@@ -17,7 +22,6 @@ pipeline {
                 npm ci
                 npm run build
                 ls -la
-                
                 '''
             }
         }
