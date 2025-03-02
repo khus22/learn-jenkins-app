@@ -1,20 +1,26 @@
-pipeline {
+pipeline 
+{
     agent any
 
-    stages {
+    stages 
+    {
         /*stage('Check Docker') {
             steps {
                 sh 'docker --version'
             }
         }*/
-        stage('Build') {
-            agent {
-                docker {
+        stage('Build') 
+        {
+            agent 
+            {
+                docker 
+                {
                     image 'node:18-alpine'
                     reuseNode true
                 }
             }
-            steps {
+            steps
+             {
                 sh '''
                 ls -la
                 node --version
@@ -26,25 +32,33 @@ pipeline {
             }
         }
 
-       stage('Test'){
-        agent {
-                docker {
+       stage('Test')
+       {
+        agent 
+        {
+                docker 
+                {
                     image 'node:18-alpine'
                     reuseNode true
                 }
-            }
-        steps{
+         }
+         steps
+         {
             
             sh '''
             test -f build/index.html
             npm test
             '''
-           }
+         }
        }
-    }
-       post{
-        always{
+   
+
+    post
+    {
+        always
+        {
             junit 'test-results/junit.xml'
         }
-       }
+     }
+    }
 }
