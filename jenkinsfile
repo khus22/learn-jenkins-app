@@ -51,7 +51,7 @@ pipeline
             '''
          }
        }
-   
+    }
 
     post
     {
@@ -60,5 +60,5 @@ pipeline
             junit 'test-results/junit.xml'
         }
      }
-    }
+ 
 }
